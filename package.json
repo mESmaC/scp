@@ -1,0 +1,28 @@
+{
+  "name": "scp",
+  "displayName": "Scope",
+  "description": "Syntax highlighting for the Scope language",
+  "version": "0.0.1",
+  "publisher": "nocturio",
+  "engines": {
+      "vscode": "^1.51.0"
+  },
+  "categories": ["Programming Languages"],
+  "contributes": {
+      "languages": [
+          {
+              "id": "scope",
+              "aliases": ["Scope", "scope"],
+              "extensions": [".scp"],
+              "configuration": "./language-configuration.json"
+          }
+      ],
+      "grammars": [
+          {
+              "language": "scope",
+              "scopeName": "source.scope",
+              "path": "./syntaxes/scope.tmLanguage.json"
+          }
+      ]
+  }
+}
