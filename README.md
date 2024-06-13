@@ -1,65 +1,91 @@
-# scp README
+# Scope Language Support
 
-This is the README for your extension "scp". After writing up a brief description, we recommend including the following sections.
+This extension provides syntax highlighting and basic language support for the Scope programming language.
 
 ## Features
 
-Describe specific features of your extension including screenshots of your extension in action. Image paths are relative to this README file.
+- Syntax highlighting for keywords, comments, strings, and variables.
+- Support for modern Pascal-like syntax with additional features such as `mut`, `owner`, and `borrow` annotations.
+- Curly brackets for block delimiters instead of `begin` and `end`.
 
-For example if there is an image subfolder under your extension project workspace:
+## Example
 
-\!\[feature X\]\(images/feature-x.png\)
+```scope
+program main;
 
-> Tip: Many popular extensions utilize animations. This is an excellent way to show off your extension! We recommend short, focused animations that are easy to follow.
+uses
+    crt,
+    fphttpclient, // For HTTP requests
+    regexpr;      // For regular expressions
 
-## Requirements
+var
+    mut url: string;
+    mut pageContent: string;
+    mut re: TRegExpr;
+    mut matches: array of string;
 
-If you have any requirements or dependencies, add a section describing those and how to install and configure them.
+proc fetchPage(url: string) -> string {
+    return TFPHTTPClient.SimpleGet(url);
+};
 
-## Extension Settings
+proc extractLinks(content: string) -> array of string {
+    re := TRegExpr.Create('<a href="([^"]+)"');
+    try {
+        if re.Exec(content) then {
+            repeat
+                matches.append(re.Match[1]);
+            until not re.ExecNext;
+        end;
+    finally
+        re.Free;
+    end;
+    return matches;
+};
 
-Include if your extension adds any VS Code settings through the `contributes.configuration` extension point.
+proc mainProcedure() {
+    url := 'http://example.com';
+    pageContent := fetchPage(url);
+    matches := extractLinks(pageContent);
+    
+    for link in matches {
+        writeln(link);
+    }
+};
 
-For example:
+init {
+    mainProcedure();
+};
+```
 
-This extension contributes the following settings:
+##Requirements
 
-* `myExtension.enable`: Enable/disable this extension.
-* `myExtension.thing`: Set to `blah` to do something.
+There are no special requirements or dependencies for this extension.
 
-## Known Issues
+##Extension Settings
 
-Calling out known issues can help limit users opening duplicate issues against your extension.
+This extension does not add any VS Code settings through the contributes.configuration extension point.
 
-## Release Notes
+##Known Issues
 
-Users appreciate release notes as you update your extension.
+There are no known issues at this time. Please report any issues you encounter on the GitHub repository.
 
-### 1.0.0
+##Release Notes
 
-Initial release of ...
+1.0.0
 
-### 1.0.1
+- Initial release of Scope language support.
 
-Fixed issue #.
-
-### 1.1.0
-
-Added features X, Y, and Z.
-
----
-
-## Working with Markdown
+##Working with Markdown
 
 You can author your README using Visual Studio Code. Here are some useful editor keyboard shortcuts:
 
-* Split the editor (`Cmd+\` on macOS or `Ctrl+\` on Windows and Linux).
-* Toggle preview (`Shift+Cmd+V` on macOS or `Shift+Ctrl+V` on Windows and Linux).
-* Press `Ctrl+Space` (Windows, Linux, macOS) to see a list of Markdown snippets.
+- Split the editor (Cmd+\ on macOS or Ctrl+\ on Windows and Linux).
+- Toggle preview (Shift+Cmd+V on macOS or Shift+Ctrl+V on Windows and Linux).
+- Press Ctrl+Space (Windows, Linux, macOS) to see a list of Markdown snippets.
 
-## For more information
+For more information
 
-* [Visual Studio Code's Markdown Support](http://code.visualstudio.com/docs/languages/markdown)
-* [Markdown Syntax Reference](https://help.github.com/articles/markdown-basics/)
+- Visual Studio Code's Markdown Support: http://code.visualstudio.com/docs/languages/markdown
+- Markdown Syntax Reference: https://help.github.com/articles/markdown-basics/
 
-**Enjoy!**
+Enjoy!

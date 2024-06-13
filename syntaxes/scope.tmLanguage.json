@@ -25,23 +25,48 @@
             ]
         },
         "strings": {
-            "name": "string.quoted.double.scope",
-            "begin": "\"",
-            "beginCaptures": {
-                "0": {
-                    "name": "punctuation.definition.string.begin.scope"
-                }
-            },
-            "end": "\"",
-            "endCaptures": {
-                "0": {
-                    "name": "punctuation.definition.string.end.scope"
-                }
-            },
             "patterns": [
                 {
-                    "name": "constant.character.escape.scope",
-                    "match": "\\\\."
+                    "name": "string.quoted.double.scope",
+                    "begin": "\"",
+                    "beginCaptures": {
+                        "0": {
+                            "name": "punctuation.definition.string.begin.scope"
+                        }
+                    },
+                    "end": "\"",
+                    "endCaptures": {
+                        "0": {
+                            "name": "punctuation.definition.string.end.scope"
+                        }
+                    },
+                    "patterns": [
+                        {
+                            "name": "constant.character.escape.scope",
+                            "match": "\\\\."
+                        }
+                    ]
+                },
+                {
+                    "name": "string.quoted.single.scope",
+                    "begin": "'",
+                    "beginCaptures": {
+                        "0": {
+                            "name": "punctuation.definition.string.begin.scope"
+                        }
+                    },
+                    "end": "'",
+                    "endCaptures": {
+                        "0": {
+                            "name": "punctuation.definition.string.end.scope"
+                        }
+                    },
+                    "patterns": [
+                        {
+                            "name": "constant.character.escape.scope",
+                            "match": "\\\\."
+                        }
+                    ]
                 }
             ]
         },

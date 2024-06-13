@@ -2,12 +2,16 @@
   "name": "scp",
   "displayName": "Scope",
   "description": "Syntax highlighting for the Scope language",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "publisher": "nocturio",
   "engines": {
       "vscode": "^1.51.0"
   },
   "categories": ["Programming Languages"],
+  "repository": {
+      "type": "git",
+      "url": "https://github.com/mESmaC/scp"
+  },
   "contributes": {
       "languages": [
           {
